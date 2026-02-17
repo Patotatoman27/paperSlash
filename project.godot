@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Paper Slash"
+run/main_scene="uid://wmw35wk4nw7w"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SyncManager="*res://addons/godot-rollback-netcode/SyncManager.gd"
+SyncDebugger="*res://addons/godot-rollback-netcode/SyncDebugger.gd"
+SyncReplay="*res://addons/godot-rollback-netcode/SyncReplay.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-rollback-netcode/plugin.cfg")
+
+[input]
+
+sync_debug={
+&"deadzone": 0.5,
+&"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194342,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+
+[network]
+
+rollback/classes/message_serializer="uid://cobt4vt4bloeq"
+rollback/debug/rollback_ticks=4
+rollback/debug/random_rollback_ticks=10
+rollback/log_inspector/replay_match_scene_path="uid://wmw35wk4nw7w"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

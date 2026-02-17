@@ -1,0 +1,70 @@
+[gd_scene load_steps=16 format=3 uid="uid://rkdbyryukypr"]
+
+[ext_resource type="Script" uid="uid://cgr7qfwkbo4vs" path="res://Scripts/Players/playerScript.gd" id="1_gemsn"]
+[ext_resource type="Texture2D" uid="uid://bwpwd6kjtisih" path="res://Sprites/Characters/Mint/Mint1/Idle0001.png" id="2_2gre2"]
+[ext_resource type="Texture2D" uid="uid://dm6v1npxt4r27" path="res://Sprites/Characters/Mint/Mint1/Idle0002.png" id="3_6bv0q"]
+[ext_resource type="Texture2D" uid="uid://cm4ofat0ta2x7" path="res://Sprites/Characters/Mint/Mint1/Idle0003.png" id="4_7wd6f"]
+[ext_resource type="Texture2D" uid="uid://b2yjqnole6dcq" path="res://Sprites/Characters/Mint/Mint1/Idle0004.png" id="5_lhl0d"]
+[ext_resource type="Texture2D" uid="uid://dyfomradukuca" path="res://Sprites/Characters/Mint/Mint1/Idle0005.png" id="6_6hrg0"]
+[ext_resource type="Texture2D" uid="uid://bt3gxft52oxgb" path="res://Sprites/Characters/Mint/Mint1/Idle0006.png" id="7_trvgx"]
+[ext_resource type="Texture2D" uid="uid://d0nn8twbwdu18" path="res://Sprites/Characters/Mint/Mint1/Idle0007.png" id="8_67opr"]
+[ext_resource type="Texture2D" uid="uid://dkq8k8rjn5qj5" path="res://Sprites/Characters/Mint/Mint1/Idle0008.png" id="9_togua"]
+[ext_resource type="Texture2D" uid="uid://de7ngb2y2vut5" path="res://Sprites/Characters/Mint/Mint1/Idle0009.png" id="10_gthgv"]
+[ext_resource type="Texture2D" uid="uid://d4fbr82hq0k41" path="res://Sprites/Characters/Mint/Mint1/Idle0010.png" id="11_116ke"]
+[ext_resource type="Texture2D" uid="uid://bq16u8ua6rjy8" path="res://Sprites/Characters/Mint/Mint1/Idle0011.png" id="12_2qvk3"]
+[ext_resource type="Texture2D" uid="uid://dttff1y6ehuuu" path="res://Sprites/Characters/Mint/Mint1/Idle0012.png" id="13_qt8nw"]
+[ext_resource type="Texture2D" uid="uid://3fix1mosdwb0" path="res://Sprites/Characters/Mint/Mint1/Idle0013.png" id="14_5srnx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqk5u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2gre2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6bv0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7wd6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lhl0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6hrg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_trvgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_67opr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_togua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gthgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_116ke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2qvk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qt8nw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5srnx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Player1" type="Node2D" groups=["network_sync"]]
+script = ExtResource("1_gemsn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hqk5u")
+animation = &"Idle"
