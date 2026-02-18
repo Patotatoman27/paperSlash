@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rkdbyryukypr"]
+[gd_scene load_steps=17 format=3 uid="uid://rkdbyryukypr"]
 
 [ext_resource type="Script" uid="uid://cgr7qfwkbo4vs" path="res://Scripts/Players/playerScript.gd" id="1_gemsn"]
 [ext_resource type="Texture2D" uid="uid://bwpwd6kjtisih" path="res://Sprites/Characters/Mint/Mint1/Idle0001.png" id="2_2gre2"]
@@ -62,9 +62,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gemsn"]
+size = Vector2(73, 267)
+
 [node name="Player1" type="Node2D" groups=["network_sync"]]
 script = ExtResource("1_gemsn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hqk5u")
 animation = &"Idle"
+metadata/_edit_lock_ = true
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-7.5, 41.5)
+shape = SubResource("RectangleShape2D_gemsn")

@@ -1,7 +1,7 @@
 extends Node
 
 const LOGFILEDIRECTORY = "user://detailed_logs";
-var loggingEnabled := true;
+var loggingEnabled := false;
 
 @onready var host: LineEdit = $CanvasLayer/MainPanel/MarginContainer/Panel/Host
 @onready var port: LineEdit = $CanvasLayer/MainPanel/MarginContainer/Panel/Port
@@ -9,8 +9,9 @@ var loggingEnabled := true;
 @onready var clientButton: Button = $CanvasLayer/MainPanel/MarginContainer/Panel/ClientButton
 @onready var message: Label = $CanvasLayer/Message
 @onready var syncLabel: Label = $CanvasLayer/SyncLabel
-@onready var mainPanel: PanelContainer = $CanvasLayer/MainPanel
+@onready var mainPanel: Window = $CanvasLayer/MainPanel
 @onready var reset: Button = $CanvasLayer/Reset
+@onready var mainMenu: VBoxContainer = $CanvasLayer/MainMenu
 
 @onready var player1: Node2D = $"World/Player1"
 @onready var player2: Node2D = $"World/Player2"
@@ -119,7 +120,16 @@ func _on_reset_pressed() -> void:
 		multiplayer.multiplayer_peer = null
 	get_tree().reload_current_scene()
 
-func setup_match_for_replay(my_peer_id : int, peer_ids : Array, match_info: Dictionary):
+func setup_match_for_replay(_my_peer_id : int, _peer_ids : Array, _match_info: Dictionary):
 	print("Inicio de Replay")
+	mainMenu.visible = false;
 	mainPanel.visible = false;
 	reset.visible = false;
+
+
+func _on_singleplayer_pressed() -> void:
+	mainMenu.visible = false;
+
+func _on_online_pressed() -> void:
+	mainMenu.visible = false;
+	mainPanel.visible = true;

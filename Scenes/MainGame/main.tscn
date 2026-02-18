@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://wmw35wk4nw7w"]
+[gd_scene load_steps=4 format=3 uid="uid://wmw35wk4nw7w"]
 
 [ext_resource type="Script" uid="uid://d03akmlnlji6i" path="res://Scripts/Main/main.gd" id="1_2peg6"]
+[ext_resource type="Script" uid="uid://dt81i7ucl0676" path="res://Scripts/Stages/test_stage_realTest.gd" id="2_6q51q"]
 [ext_resource type="PackedScene" uid="uid://rkdbyryukypr" path="res://Scenes/Characters/Mint.tscn" id="2_ohob2"]
 
 [node name="Main" type="Node"]
@@ -8,21 +9,37 @@ script = ExtResource("1_2peg6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MainPanel" type="PanelContainer" parent="CanvasLayer"]
+[node name="MainMenu" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -194.0
-offset_top = -55.5
-offset_right = 194.0
-offset_bottom = 55.5
+offset_left = -99.0
+offset_top = -20.0
+offset_right = 99.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainPanel"]
+[node name="Singleplayer" type="Button" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Local Match"
+
+[node name="Online" type="Button" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Online Match"
+
+[node name="MainPanel" type="Window" parent="CanvasLayer"]
+oversampling_override = 1.0
+size = Vector2i(390, 150)
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainPanel"]
+offset_right = 388.0
+offset_bottom = 111.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -84,10 +101,22 @@ text = "Regaining Sync..."
 
 [node name="World" type="Node2D" parent="."]
 
+[node name="Stage" type="Node2D" parent="World"]
+
+[node name="TestStage" type="Node2D" parent="World/Stage"]
+script = ExtResource("2_6q51q")
+
 [node name="Player1" parent="World" instance=ExtResource("2_ohob2")]
+position = Vector2(0, -410)
 
 [node name="Player2" parent="World" instance=ExtResource("2_ohob2")]
+position = Vector2(0, -410)
 
+[node name="Camera2D" type="Camera2D" parent="World"]
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/Online" to="." method="_on_online_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainPanel/MarginContainer/Panel/ServerButton" to="." method="_on_server_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainPanel/MarginContainer/Panel/ClientButton" to="." method="_on_client_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Reset" to="." method="_on_reset_pressed"]
