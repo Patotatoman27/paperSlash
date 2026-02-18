@@ -1,5 +1,8 @@
 extends Node
 
+#Singlepayer
+const DummyNetworkAdapter = preload("res://addons/godot-rollback-netcode/DummyNetworkAdaptor.gd")
+
 const LOGFILEDIRECTORY = "user://detailed_logs";
 var loggingEnabled := false;
 
@@ -129,7 +132,11 @@ func setup_match_for_replay(_my_peer_id : int, _peer_ids : Array, _match_info: D
 
 func _on_singleplayer_pressed() -> void:
 	mainMenu.visible = false;
-
+	player2.inputPrefix = "P2_"
+	SyncManager.network_adaptor = DummyNetworkAdapter.new()
+	SyncManager.start();
+	
 func _on_online_pressed() -> void:
+	SyncManager.reset_network_adaptor()
 	mainMenu.visible = false;
 	mainPanel.visible = true;

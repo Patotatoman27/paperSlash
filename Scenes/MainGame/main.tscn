@@ -34,7 +34,8 @@ text = "Online Match"
 
 [node name="MainPanel" type="Window" parent="CanvasLayer"]
 oversampling_override = 1.0
-size = Vector2i(390, 150)
+initial_position = 1
+size = Vector2i(390, 110)
 visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainPanel"]

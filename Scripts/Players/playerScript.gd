@@ -14,11 +14,14 @@ const PLAYER_OFFSET = Vector2(-7.5, 41.5) # offset desde la posición real del n
 # Collision box
 var playerRect: Rect2
 
+#Controllers
+var inputPrefix := "P1_"
+
 func _ready():
 	_updatePlayerRect()
 
 func _get_local_input() -> Dictionary:
-	var inputVector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var inputVector = Input.get_vector(inputPrefix+"Left", inputPrefix+"Right", inputPrefix+"Up", inputPrefix+"Down")
 	var input := {}
 	if inputVector != Vector2.ZERO:
 		input["inputVector"] = inputVector
