@@ -5,7 +5,8 @@ const input_path_mapping := {
 	'/root/Main/World/Player2': 2,
 }
 enum HeaderFlags {
-	HAS_INPUTVECTOR = 0x01
+	HAS_INPUTVECTOR = 0x01,
+	JUMP_ACTION = 0x02
 }
 
 var input_path_mapping_reverse := {}
@@ -30,6 +31,8 @@ func serialize_input(allInput: Dictionary) -> PackedByteArray:
 		var input = allInput[path]
 		if input.has("inputVector"):
 			header |= HeaderFlags.HAS_INPUTVECTOR
+		if input.get("jump", false):
+			header |= HeaderFlags.JUMP_ACTION
 		
 		buffer.put_u8(header)
 		
@@ -59,6 +62,8 @@ func unserialize_input(serialized: PackedByteArray) -> Dictionary:
 	var header = buffer.get_u8()
 	if header & HeaderFlags.HAS_INPUTVECTOR:
 		input["inputVector"] = Vector2(buffer.get_float(), buffer.get_float())
+	if header & HeaderFlags.JUMP_ACTION:
+		input["jump"] = true
 	
 	allInput[path] = input
 	return allInput

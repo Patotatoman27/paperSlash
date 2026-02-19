@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://wmw35wk4nw7w"]
+[gd_scene load_steps=5 format=3 uid="uid://wmw35wk4nw7w"]
 
 [ext_resource type="Script" uid="uid://d03akmlnlji6i" path="res://Scripts/Main/main.gd" id="1_2peg6"]
 [ext_resource type="Script" uid="uid://dt81i7ucl0676" path="res://Scripts/Stages/test_stage_realTest.gd" id="2_6q51q"]
 [ext_resource type="PackedScene" uid="uid://rkdbyryukypr" path="res://Scenes/Characters/Mint.tscn" id="2_ohob2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q51q"]
+size = Vector2(1113, 271)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_2peg6")
@@ -107,14 +110,22 @@ text = "Regaining Sync..."
 [node name="TestStage" type="Node2D" parent="World/Stage"]
 script = ExtResource("2_6q51q")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Stage/TestStage"]
+position = Vector2(6, 412)
+shape = SubResource("RectangleShape2D_6q51q")
+
 [node name="Player1" parent="World" instance=ExtResource("2_ohob2")]
 position = Vector2(0, -410)
+PLAYER_OFFSET = Vector2(-7.5, 41.5)
+PLAYER_SIZE = Vector2(73, 267)
 
 [node name="Player2" parent="World" instance=ExtResource("2_ohob2")]
 position = Vector2(0, -410)
+PLAYER_OFFSET = Vector2(-7.5, 41.5)
+PLAYER_SIZE = Vector2(73, 267)
 
 [node name="Camera2D" type="Camera2D" parent="World"]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.6, 0.6)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/Singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/Online" to="." method="_on_online_pressed"]
