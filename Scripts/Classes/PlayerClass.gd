@@ -31,11 +31,8 @@ func _get_local_input() -> Dictionary:
 
 #region PROCESS
 func _network_process(input: Dictionary) -> void:
-	position += input.get("inputVector", Vector2.ZERO) * speed
-	if input.get("jump", false): 
-		velocity.y = jumpSpeed;
-	stateMachine._updatePlayerRect()
-	stateMachine.physics_step()
+	stateMachine.process(input)
+	physics_step()
 
 #region STATE SAVE/LOAD
 func _save_state() -> Dictionary:
@@ -51,7 +48,7 @@ func _load_state(state: Dictionary):
 	velocity = state["velocity"]
 	grounded = state["grounded"]
 	stateMachine.currentState = state["SMstate"]
-	stateMachine._updatePlayerRect()
+	_updatePlayerRect()
 
 #region HITBOX
 func _draw():
@@ -60,3 +57,55 @@ func _draw():
 		playerRect.size
 	)
 	draw_rect(local_rect, Color(0, 1, 0, 0.5), false, 2)
+
+func physics_step():
+	_updatePlayerRect();
+	apply_gravity();
+	_updatePlayerRect();
+	resolveCollisions()
+	updateGrounded()
+	
+func _updatePlayerRect():
+	playerRect = Rect2(position + PLAYER_OFFSET - PLAYER_SIZE/2, PLAYER_SIZE)
+
+func apply_gravity():
+	velocity.y += gravity
+	position.y += velocity.y
+
+func resolveCollisions():
+	for f in stage.floorRectangles:
+		var floorGlobal = Rect2(f.position + stage.position, f.size)
+		if playerRect.intersects(floorGlobal):
+			var playerCenter = playerRect.position + playerRect.size / 2
+			var floorCenter = floorGlobal.position + floorGlobal.size / 2
+			var dx = playerCenter.x - floorCenter.x
+			var dy = playerCenter.y - floorCenter.y
+			var overlapX = (playerRect.size.x / 2 + floorGlobal.size.x / 2) - abs(dx)
+			var overlapY = (playerRect.size.y / 2 + floorGlobal.size.y / 2) - abs(dy)
+			# Resolver por el eje de menor penetración
+			if overlapX < overlapY:
+				# Horizontal
+				if dx > 0:
+					playerRect.position.x += overlapX
+				else:
+					playerRect.position.x -= overlapX
+			else:
+				# Vertical (piso o techo)
+				if dy > 0:
+					# debajo → empujar hacia abajo (techo)
+					playerRect.position.y += overlapY
+				else:
+					# arriba → empujar hacia arriba (piso)
+					playerRect.position.y -= overlapY
+					velocity.y = 0;
+	# sincronizar posición del nodo
+	position = playerRect.position + PLAYER_SIZE/2 - PLAYER_OFFSET
+
+
+func updateGrounded():
+	grounded = false
+	for f in stage.floorRectangles:
+		var floorGlobal = Rect2(f.position + stage.position, f.size)
+		if playerRect.position.y + playerRect.size.y == floorGlobal.position.y:
+			grounded = true
+			break
