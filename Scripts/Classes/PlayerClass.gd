@@ -32,7 +32,6 @@ func _get_local_input() -> Dictionary:
 #region PROCESS
 func _network_process(input: Dictionary) -> void:
 	stateMachine.process(input)
-	physics_step()
 
 #region STATE SAVE/LOAD
 func _save_state() -> Dictionary:
@@ -58,13 +57,6 @@ func _draw():
 	)
 	draw_rect(local_rect, Color(0, 1, 0, 0.5), false, 2)
 
-func physics_step():
-	_updatePlayerRect();
-	apply_gravity();
-	_updatePlayerRect();
-	resolveCollisions()
-	updateGrounded()
-	
 func _updatePlayerRect():
 	playerRect = Rect2(position + PLAYER_OFFSET - PLAYER_SIZE/2, PLAYER_SIZE)
 
