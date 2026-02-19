@@ -11,21 +11,25 @@ enum STATE {
 var currentState : STATE = STATE.IDLE;
 
 func process(input: Dictionary):
-	#Basic Controls
-	controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
-	if input.get("jump", false): 
-		controlledNode.velocity.y = controlledNode.jumpSpeed;
+	#State Specific
+	match currentState:
+		STATE.IDLE:
+			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			if input.get("jump", false): 
+				controlledNode.velocity.y = controlledNode.jumpSpeed;
+				currentState = STATE.AIR
+		STATE.WALK:
+			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			if input.get("jump", false): 
+				controlledNode.velocity.y = controlledNode.jumpSpeed;
+				currentState = STATE.AIR
+		STATE.AIR:
+			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			if controlledNode.grounded:
+				currentState = STATE.IDLE
 	#Physics process
 	controlledNode._updatePlayerRect();
 	controlledNode.apply_gravity();
 	controlledNode._updatePlayerRect();
 	controlledNode.resolveCollisions()
 	controlledNode.updateGrounded()
-	#State Specific
-	match currentState:
-		STATE.IDLE:
-			pass;
-		STATE.WALK:
-			pass;
-		STATE.AIR:
-			pass;
