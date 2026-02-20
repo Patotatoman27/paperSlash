@@ -10,6 +10,7 @@ var inputPrefix := "P1_"
 #Atributos //Se guardan
 var velocity : Vector2
 var grounded : bool = false
+var turnRight : bool = true;
 #Stats
 var speed : int
 var jumpSpeed : int
@@ -39,6 +40,7 @@ func _save_state() -> Dictionary:
 		position = position,
 		velocity = velocity,
 		grounded = grounded,
+		turnRight = turnRight,
 		SMstate = stateMachine.currentState
 	}
 
@@ -46,6 +48,7 @@ func _load_state(state: Dictionary):
 	position = state["position"]
 	velocity = state["velocity"]
 	grounded = state["grounded"]
+	turnRight = state["turnRight"]
 	stateMachine.currentState = state["SMstate"]
 	_updatePlayerRect()
 
@@ -94,10 +97,37 @@ func resolveCollisions():
 	position = playerRect.position + PLAYER_SIZE/2 - PLAYER_OFFSET
 
 
+#func updateGrounded():
+	#grounded = false
+	#for f in stage.floorRectangles:
+		#var floorGlobal = Rect2(f.position + stage.position, f.size)
+		#if playerRect.position.y + playerRect.size.y == floorGlobal.position.y:
+			#grounded = true
+			#break
 func updateGrounded():
 	grounded = false
+
 	for f in stage.floorRectangles:
 		var floorGlobal = Rect2(f.position + stage.position, f.size)
-		if playerRect.position.y + playerRect.size.y == floorGlobal.position.y:
-			grounded = true
-			break
+
+		var playerBottom = playerRect.position.y + playerRect.size.y
+		var floorTop = floorGlobal.position.y
+
+		# Coincidencia exacta vertical
+		if playerBottom == floorTop:
+
+			var playerLeft = playerRect.position.x
+			var playerRight = playerRect.position.x + playerRect.size.x
+			var floorLeft = floorGlobal.position.x
+			var floorRight = floorGlobal.position.x + floorGlobal.size.x
+
+			# Overlap horizontal real (sin contar bordes exactos)
+			if playerRight > floorLeft and playerLeft < floorRight:
+				grounded = true
+				break
+
+func updateFacing():
+	if turnRight:
+		self.scale = Vector2(1.0, 1.0)
+	else:
+		self.scale = Vector2(-1.0, 1.0)

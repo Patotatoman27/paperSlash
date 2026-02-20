@@ -5,6 +5,7 @@ class_name StateMachine extends Node
 enum STATE {
 	IDLE,
 	WALK,
+	JUMP,
 	AIR,
 }
 
@@ -14,17 +15,30 @@ func process(input: Dictionary):
 	#State Specific
 	match currentState:
 		STATE.IDLE:
-			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			var daInput = input.get("inputVector", Vector2.ZERO)
+			if daInput.x != 0:
+				currentState = STATE.WALK
 			if input.get("jump", false): 
-				controlledNode.velocity.y = controlledNode.jumpSpeed;
+				currentState = STATE.JUMP
+			if not controlledNode.grounded:
 				currentState = STATE.AIR
 		STATE.WALK:
-			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			var daInput = input.get("inputVector", Vector2.ZERO)
+			controlledNode.position.x += daInput.x * controlledNode.speed
+			if daInput.x > 0:
+				controlledNode.turnRight = true;
+			elif daInput.x < 0:
+				controlledNode.turnRight = false;
 			if input.get("jump", false): 
-				controlledNode.velocity.y = controlledNode.jumpSpeed;
+				currentState = STATE.JUMP
+			if not controlledNode.grounded:
 				currentState = STATE.AIR
-		STATE.AIR:
+		STATE.JUMP:
 			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
+			controlledNode.velocity.y = controlledNode.jumpSpeed;
+			currentState = STATE.AIR
+		STATE.AIR:
+			controlledNode.position.x += input.get("inputVector", Vector2.ZERO).x * controlledNode.speed
 			if controlledNode.grounded:
 				currentState = STATE.IDLE
 	#Physics process
@@ -33,3 +47,5 @@ func process(input: Dictionary):
 	controlledNode._updatePlayerRect();
 	controlledNode.resolveCollisions()
 	controlledNode.updateGrounded()
+	#Design??
+	controlledNode.updateFacing();
