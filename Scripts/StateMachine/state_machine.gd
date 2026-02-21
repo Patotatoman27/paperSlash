@@ -1,6 +1,8 @@
 class_name StateMachine extends Node
 
-@onready var controlledNode: Node2D = $".."
+@onready var controlledNode : Node = self.owner
+@export var firstState : BaseState
+var currentState : BaseState = null;
 
 enum STATE {
 	IDLE,
@@ -9,38 +11,28 @@ enum STATE {
 	AIR,
 }
 
-var currentState : STATE = STATE.IDLE;
+func _ready() -> void:
+	call_deferred("firstState_start")
+
+func firstState_start():
+	currentState = firstState
+	state_start();
+
+func state_start():
+	currentState.controlledNode = controlledNode
+	currentState.stateMachine = self
+	currentState.start()
+
+func changeState(newState : String):
+	#Si el estado actual no es nulo y hay un end, llamalo.
+	if currentState and currentState.has_method("end"): currentState.end();
+	#Cambia el Estado y comienzalo
+	currentState = get_node(newState)
+	state_start()
+
 
 func process(input: Dictionary):
-	#State Specific
-	match currentState:
-		STATE.IDLE:
-			var daInput = input.get("inputVector", Vector2.ZERO)
-			if daInput.x != 0:
-				currentState = STATE.WALK
-			if input.get("jump", false): 
-				currentState = STATE.JUMP
-			if not controlledNode.grounded:
-				currentState = STATE.AIR
-		STATE.WALK:
-			var daInput = input.get("inputVector", Vector2.ZERO)
-			controlledNode.position.x += daInput.x * controlledNode.speed
-			if daInput.x > 0:
-				controlledNode.turnRight = true;
-			elif daInput.x < 0:
-				controlledNode.turnRight = false;
-			if input.get("jump", false): 
-				currentState = STATE.JUMP
-			if not controlledNode.grounded:
-				currentState = STATE.AIR
-		STATE.JUMP:
-			controlledNode.position += input.get("inputVector", Vector2.ZERO) * controlledNode.speed
-			controlledNode.velocity.y = controlledNode.jumpSpeed;
-			currentState = STATE.AIR
-		STATE.AIR:
-			controlledNode.position.x += input.get("inputVector", Vector2.ZERO).x * controlledNode.speed
-			if controlledNode.grounded:
-				currentState = STATE.IDLE
+	if currentState and currentState.has_method("playerStateProcess"): currentState.playerStateProcess(input);
 	#Physics process
 	controlledNode._updatePlayerRect();
 	controlledNode.apply_gravity();

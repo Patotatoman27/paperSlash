@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://rkdbyryukypr"]
+[gd_scene load_steps=35 format=3 uid="uid://rkdbyryukypr"]
 
 [ext_resource type="Script" uid="uid://cgr7qfwkbo4vs" path="res://Scripts/Players/playerScript.gd" id="1_gemsn"]
 [ext_resource type="Texture2D" uid="uid://bwpwd6kjtisih" path="res://Sprites/Characters/Mint/Mint1/Idle0001.png" id="2_2gre2"]
@@ -15,8 +15,19 @@
 [ext_resource type="Texture2D" uid="uid://dttff1y6ehuuu" path="res://Sprites/Characters/Mint/Mint1/Idle0012.png" id="13_qt8nw"]
 [ext_resource type="Texture2D" uid="uid://3fix1mosdwb0" path="res://Sprites/Characters/Mint/Mint1/Idle0013.png" id="14_5srnx"]
 [ext_resource type="Script" uid="uid://deqspp6r5a5vh" path="res://addons/godot-rollback-netcode/NetworkAnimationPlayer.gd" id="15_2gre2"]
+[ext_resource type="Texture2D" uid="uid://dgn28mvfdl2gm" path="res://Sprites/Characters/Mint/Mint1/Walk0001.png" id="15_vo46e"]
 [ext_resource type="Script" uid="uid://bqadeyvv6at7p" path="res://Scripts/StateMachine/state_machine.gd" id="16_6bv0q"]
+[ext_resource type="Texture2D" uid="uid://ciy0dr146jj3j" path="res://Sprites/Characters/Mint/Mint1/Walk0002.png" id="16_ro1bp"]
 [ext_resource type="Script" uid="uid://cie8tqrw4t8e8" path="res://Scripts/StateMachine/CharacterStates/idle.gd" id="17_7wd6f"]
+[ext_resource type="Texture2D" uid="uid://c7d4wkalu5d8j" path="res://Sprites/Characters/Mint/Mint1/Walk0003.png" id="17_862q6"]
+[ext_resource type="Texture2D" uid="uid://bu6x5l0d5o3sl" path="res://Sprites/Characters/Mint/Mint1/Walk0004.png" id="18_64m2h"]
+[ext_resource type="Script" uid="uid://cgl1aynj6m1qi" path="res://Scripts/StateMachine/CharacterStates/walk.gd" id="18_trvgx"]
+[ext_resource type="Texture2D" uid="uid://bkvrtasmfjkp2" path="res://Sprites/Characters/Mint/Mint1/Walk0005.png" id="19_53pnn"]
+[ext_resource type="Script" uid="uid://tedf20fvwpek" path="res://Scripts/StateMachine/CharacterStates/jump.gd" id="19_67opr"]
+[ext_resource type="Texture2D" uid="uid://cb0spf4yttijs" path="res://Sprites/Characters/Mint/Mint1/Walk0006.png" id="20_8u7ss"]
+[ext_resource type="Script" uid="uid://cnw1qs81nweid" path="res://Scripts/StateMachine/CharacterStates/air.gd" id="20_togua"]
+[ext_resource type="Texture2D" uid="uid://b3mujqkyeit6j" path="res://Sprites/Characters/Mint/Mint1/Walk0007.png" id="21_47mm6"]
+[ext_resource type="Texture2D" uid="uid://c3s60mo021d5g" path="res://Sprites/Characters/Mint/Mint1/Walk0008.png" id="22_hyds5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hqk5u"]
 animations = [{
@@ -63,6 +74,35 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_vo46e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ro1bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_862q6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_64m2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_53pnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8u7ss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_47mm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_hyds5")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gemsn"]
@@ -85,6 +125,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
 
 [sub_resource type="Animation" id="Animation_7wd6f"]
 length = 0.001
@@ -100,11 +152,54 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_vo46e"]
+resource_name = "Walk"
+length = 0.66666836
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.24999999, 0.33333328, 0.41666666, 0.5, 0.5833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Walk"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lhl0d"]
 _data = {
 &"Idle": SubResource("Animation_6bv0q"),
-&"RESET": SubResource("Animation_7wd6f")
+&"RESET": SubResource("Animation_7wd6f"),
+&"Walk": SubResource("Animation_vo46e")
 }
 
 [node name="Mint" type="Node2D" groups=["network_sync"]]
@@ -129,8 +224,18 @@ libraries = {
 script = ExtResource("15_2gre2")
 metadata/_custom_type_script = "uid://deqspp6r5a5vh"
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("firstState")]
 script = ExtResource("16_6bv0q")
+firstState = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("17_7wd6f")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("18_trvgx")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("19_67opr")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("20_togua")
