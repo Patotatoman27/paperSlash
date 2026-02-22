@@ -88,6 +88,7 @@ P2_Jump={
 
 [network]
 
+rollback/classes/network_adaptor="uid://dgcvw24ny8fob"
 rollback/classes/message_serializer="uid://cobt4vt4bloeq"
 rollback/log_inspector/replay_match_scene_path="uid://wmw35wk4nw7w"
 

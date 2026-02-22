@@ -34,6 +34,10 @@ func send_input_tick(peer_id: int, msg: PackedByteArray) -> void:
 	_rit.rpc_id(peer_id, msg)
 
 func is_network_host() -> bool:
+	if multiplayer == null:
+		return false
+	if not multiplayer.has_multiplayer_peer():
+		return false
 	return multiplayer.is_server()
 
 func is_network_master_for_node(node: Node) -> bool:

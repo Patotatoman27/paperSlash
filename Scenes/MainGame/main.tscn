@@ -116,13 +116,9 @@ shape = SubResource("RectangleShape2D_6q51q")
 
 [node name="Player1" parent="World" instance=ExtResource("2_ohob2")]
 position = Vector2(0, -410)
-PLAYER_OFFSET = Vector2(-7.5, 41.5)
-PLAYER_SIZE = Vector2(73, 267)
 
 [node name="Player2" parent="World" instance=ExtResource("2_ohob2")]
 position = Vector2(0, -410)
-PLAYER_OFFSET = Vector2(-7.5, 41.5)
-PLAYER_SIZE = Vector2(73, 267)
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 zoom = Vector2(0.6, 0.6)

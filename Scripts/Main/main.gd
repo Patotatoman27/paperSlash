@@ -4,7 +4,7 @@ extends Node
 const DummyNetworkAdapter = preload("res://addons/godot-rollback-netcode/DummyNetworkAdaptor.gd")
 
 const LOGFILEDIRECTORY = "user://detailed_logs";
-var loggingEnabled := false;
+var loggingEnabled := true;
 
 @onready var host: LineEdit = $CanvasLayer/MainPanel/MarginContainer/Panel/Host
 @onready var port: LineEdit = $CanvasLayer/MainPanel/MarginContainer/Panel/Port
