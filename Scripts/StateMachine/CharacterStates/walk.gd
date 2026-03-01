@@ -15,7 +15,10 @@ func playerStateProcess(input: Dictionary):
 		controlledNode.turnRight = false;
 	if daInput.x == 0:
 		stateMachine.changeState("Idle")
+		return
 	if input.get("jump", false): 
 		stateMachine.changeState("Jump")
+		return
 	if not controlledNode.grounded:
 		stateMachine.changeState("Air")
+		return

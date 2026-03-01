@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://rkdbyryukypr"]
+[gd_scene load_steps=36 format=3 uid="uid://rkdbyryukypr"]
 
 [ext_resource type="Script" uid="uid://cgr7qfwkbo4vs" path="res://Scripts/Players/playerScript.gd" id="1_gemsn"]
 [ext_resource type="Texture2D" uid="uid://bwpwd6kjtisih" path="res://Sprites/Characters/Mint/Mint1/Idle0001.png" id="2_2gre2"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://cnw1qs81nweid" path="res://Scripts/StateMachine/CharacterStates/air.gd" id="20_togua"]
 [ext_resource type="Texture2D" uid="uid://b3mujqkyeit6j" path="res://Sprites/Characters/Mint/Mint1/Walk0007.png" id="21_47mm6"]
 [ext_resource type="Texture2D" uid="uid://c3s60mo021d5g" path="res://Sprites/Characters/Mint/Mint1/Walk0008.png" id="22_hyds5"]
+[ext_resource type="Script" uid="uid://buwq5cs0ftpkv" path="res://Scripts/StateMachine/CharacterStates/fall.gd" id="29_ro1bp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hqk5u"]
 animations = [{
@@ -239,3 +240,6 @@ script = ExtResource("19_67opr")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("20_togua")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("29_ro1bp")

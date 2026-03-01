@@ -124,7 +124,7 @@ func _on_reset_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func setup_match_for_replay(_my_peer_id : int, _peer_ids : Array, _match_info: Dictionary):
-	print("Inicio de Replay")
+	#print("Inicio de Replay")
 	mainMenu.visible = false;
 	mainPanel.visible = false;
 	reset.visible = false;

@@ -14,7 +14,7 @@ var turnRight : bool = true;
 #Stats
 var speed : int
 var jumpSpeed : int
-var gravity : int
+var gravity : float
 # Collision box
 var playerRect: Rect2
 @export var PLAYER_OFFSET : Vector2
@@ -41,7 +41,7 @@ func _save_state() -> Dictionary:
 		velocity = velocity,
 		grounded = grounded,
 		turnRight = turnRight,
-		SMstate = stateMachine.currentState
+		SMstate = stateMachine.currentState.name
 	}
 
 func _load_state(state: Dictionary):
@@ -49,7 +49,8 @@ func _load_state(state: Dictionary):
 	velocity = state["velocity"]
 	grounded = state["grounded"]
 	turnRight = state["turnRight"]
-	stateMachine.currentState = state["SMstate"]
+	var stateName : String = state["SMstate"]
+	stateMachine.currentState = stateMachine.get_node(stateName)
 	_updatePlayerRect()
 
 #region HITBOX
