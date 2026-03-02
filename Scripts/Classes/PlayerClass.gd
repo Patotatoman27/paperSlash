@@ -59,7 +59,8 @@ func _draw():
 		playerRect.position - global_position,
 		playerRect.size
 	)
-	draw_rect(local_rect, Color(0, 1, 0, 0.5), false, 2)
+	if false:
+		draw_rect(local_rect, Color(0, 1, 0, 0.5), false, 2)
 
 func _updatePlayerRect():
 	playerRect = Rect2(position + PLAYER_OFFSET - PLAYER_SIZE/2, PLAYER_SIZE)

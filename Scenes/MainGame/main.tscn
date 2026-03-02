@@ -118,7 +118,7 @@ shape = SubResource("RectangleShape2D_6q51q")
 position = Vector2(0, -410)
 
 [node name="Player2" parent="World" instance=ExtResource("2_ohob2")]
-position = Vector2(0, -410)
+position = Vector2(100, -410)
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 zoom = Vector2(0.6, 0.6)
