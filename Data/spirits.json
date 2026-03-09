@@ -1,0 +1,131 @@
+{
+  "collection": [
+    {
+        "name": "Mint-Chan",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "mint.png",
+        "description": "A mint-colored stick figure who was born in the r/coaxedintoasnafu subreddit before starting her career as the protagonist of the webcomic \"Mint-Chan in Colorland\". Her color lies somewhere between green and blue, which can be problematic when people don't know how to categorize her.",
+        "fighter": true,
+        "altImage": "mintChar.png"
+    },
+    {
+        "name": "Indigo",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "indigo.png",
+        "description": "As a part of the highest frequency amongst visible light, she is in charge of preducting the word of prophet Roy G. Biv to devote to Lady Ultraviolet.",
+        "fighter": false
+    },
+    {
+        "name": "Red",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "red.png",
+        "description": "",
+        "fighter": false
+    },
+    {
+        "name": "Violet",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "violet.png",
+        "description": "An exchange student from Spaint, ",
+        "fighter": false
+    },
+    {
+        "name": "Rubia-San",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "rubia.png",
+        "description": "An exchange student from Spaint, ",
+        "fighter": false
+    },
+    {
+        "name": "White",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "white.png",
+        "description": "",
+        "fighter": false
+    },
+    {
+        "name": "Black",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "black.png",
+        "description": "Lady De Saturate",
+        "fighter": false
+    },
+    {
+        "name": "Team ROYGBIV",
+        "artist": "Miki-Matsuki",
+        "series": "Mint-Chan in Colorland Series",
+        "seriesIcon": "mintSeries.png",
+        "image": "team.png",
+        "description": "",
+        "fighter": false
+    },
+    {
+        "name": "Snafu Murder Cleanup Guy",
+        "artist": "Samus388",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "smcGuy.png",
+        "description": "When a disaster occurs in the r/coaxedintoasnafu subreddit, someone has to clean it up. It's easy to find this guy using his trusty mop to clean almost anything, from excessive blood to muddy environments.",
+        "fighter": false
+    },
+    {
+        "name": "Sixteenth-Note Chan",
+        "artist": "U_R_RED-E",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "note.png",
+        "description": "Your average high school character known for starting debates about the ages of characters in fictional media. She has become a recurring figure in the r/coaxedintoasnafu subreddit, appearing in multiple comics and discussions.",
+        "fighter": false
+    },
+    {
+        "name": "Reddrew",
+        "artist": "CrystellaTee",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "reddrew.png",
+        "description": "",
+        "fighter": false
+    },
+    {
+        "name": "Murderbeast #10",
+        "artist": "National_Yak5302",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "mbeast.png",
+        "description": "As one of the many monsters that originated from a fantasy ecosystem, this murderous beast only wants to kill. He was once imprisoned in a maximum-security facility, and even then he was able to escape thanks to a small flaw in the security system.",
+        "fighter": false
+    },
+    {
+        "name": "Dr. Holocaust",
+        "artist": "ReiceMcK",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "holo.png",
+        "description": "The sworn enemy of Snafio, whose goal is to kill him and become the most evil being in existence. Despite this, he still gets invited to friendly go-kart races with Snafio and his friends.",
+        "fighter": false
+    },
+    {
+        "name": "Poopenfarden",
+        "artist": "CluckBucketz",
+        "series": "Coaxedintoasnafu Series",
+        "seriesIcon": "snafuSeries.png",
+        "image": "farden.png",
+        "description": "A mysterious being that lurks in the shadows with red eyes and a creepy face. He has teamed up with Dr. Holocaust several times, and he strikes terror into the hearts of the victims he decides to harass.",
+        "fighter": false
+    }
+  ]
+}
